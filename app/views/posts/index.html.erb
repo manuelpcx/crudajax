@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<%= form_with model: @post, local: true do |form| %>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<div id="post">
+
+</div>
+
+<script>
+  $.ajax({
+    url: '<%= posts_path %>',
+    type: 'POST',
+    dataType: 'script',
+    data: {post: ':titulo'}
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+</script>
